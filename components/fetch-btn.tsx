@@ -15,8 +15,16 @@ function FetchButton({}: Props) {
   };
   return (
     <>
-      <Button onClick={denemeFetch} variant={"outline"}>
-        Grafigi Cizdir
+      <Image
+        src={
+          img_url === "" ? "https://dummyimage.com/300.png/09f/fff" : img_url
+        }
+        alt={""}
+        width={300}
+        height={300}
+      />
+      <Button onClick={denemeFetch} variant={"outline"} className="bg-black text-white">
+        Bas Banaaaa
       </Button>
     </>
   );

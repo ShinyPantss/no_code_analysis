@@ -9,6 +9,7 @@ const Navbar = () => {
   const [isActive, setActive] = useState(false);
 
   useEffect(
+    // TODO: Her Link icin fixle
     () => setActive(router === "/datasets" ? true : false),
     [isActive, router]
   );
