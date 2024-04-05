@@ -4,6 +4,7 @@ const HomePage = () => {
   return (
     <div>
         Burasi ana sayfa
+        dfdfdsf
     </div>
   )
 }
