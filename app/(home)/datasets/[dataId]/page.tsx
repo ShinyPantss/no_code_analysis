@@ -6,7 +6,7 @@ type Props = {};
 
 const DataInterface = (props: Props) => {
   return (
-    <div>
+    <div className="h-full w-full bg-stone-900">
       <SampleForm />
     </div>
   );

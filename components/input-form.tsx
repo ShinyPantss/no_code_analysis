@@ -4,17 +4,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
 
-import { Input } from "@/components/ui/input";
+import { Form, FormField, FormItem, FormLabel } from "@/components/ui/form";
+
+
 import DetailedPlotForm from "./detailed-input-form";
 import {
   Select,
@@ -25,7 +18,6 @@ import {
 } from "@/components/ui/select";
 
 import { useEffect, useState } from "react";
-import FetchButton from "./fetch-btn";
 
 const formSchema = z.object({
   plotType: z.string(),
@@ -35,7 +27,7 @@ function SampleForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      plotType: "Bar Plot",
+      plotType: "Simple Plot",
     },
   });
   const [plotType, setPlotType] = useState("Bar Plot");
@@ -46,22 +38,23 @@ function SampleForm() {
   }, [form.watch("plotType")]);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
   }
 
   return (
-    <div className="h-full bg-stone-900 flex">
-      <div className="w-1/2 bg-stone-900 p-5 m-5 s text-black flex flex-col shadow-sm shadow-black h-full">
-        <div className="w-full">
+    <div className=" bg-stone-900 flex">
+      <div className="w-full md:w-1/2 bg-stone-900 p-5  text-black flex flex-col shadow-sm shadow-black h-full  mt-28">
+        <div className="w-full ">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-8 p-5 text-black"
+            >
               <FormField
                 control={form.control}
                 name="plotType"
                 render={({ field }) => (
                   <FormItem className="">
-                    <FormLabel>Plot Type</FormLabel>
+                    <FormLabel className="text-white">Plot Type</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <SelectTrigger className="w-[180px]">
                         <SelectValue placeholder="Select Your Plot" />
@@ -71,7 +64,7 @@ function SampleForm() {
                         <SelectItem value="Scatter Plot">
                           Scatter Plot
                         </SelectItem>
-                        <SelectItem value="Simple">Simple Plot</SelectItem>
+                        <SelectItem value="Simple Plot">Simple Plot</SelectItem>
                       </SelectContent>
                     </Select>
                   </FormItem>
@@ -81,11 +74,8 @@ function SampleForm() {
           </Form>
           <DetailedPlotForm plotType={plotType} />
         </div>
-        <Button type="submit" variant={"default"} className="">
-          Submit
-        </Button>
+       
       </div>
-      <FetchButton />
     </div>
   );
 }

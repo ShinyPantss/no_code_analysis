@@ -9,7 +9,7 @@ type Props = {};
 function FetchButton({}: Props) {
   const [img_url, set_imgurl] = useState("");
   const denemeFetch = async () => {
-    const res = await fetch("http://127.0.0.1:5000/");
+    const res = await fetch("http://127.0.0.1:5000/", {});
     const data = await res.text();
     set_imgurl(data);
   };
@@ -23,7 +23,11 @@ function FetchButton({}: Props) {
         width={300}
         height={300}
       />
-      <Button onClick={denemeFetch} variant={"outline"} className="bg-black text-white">
+      <Button
+        onClick={denemeFetch}
+        variant={"outline"}
+        className="bg-black text-white"
+      >
         Bas Banaaaa
       </Button>
     </>
