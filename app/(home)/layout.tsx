@@ -1,5 +1,4 @@
 import React from "react";
-import HomePage from "./page";
 import Navbar from "@/components/nav-bar";
 import { Quicksand } from "next/font/google";
 
