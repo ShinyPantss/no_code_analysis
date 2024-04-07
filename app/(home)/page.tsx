@@ -2,8 +2,14 @@ import React from "react";
 import Hero from "@/components/main/Hero";
 import Image from "next/image";
 
-const Home = () => {
-  return <main className="h-full w-ful text-white">burasi ANA SAYFA</main>;
-};
+export default function Home() {
+  return (
+<main className="h-full w-full">
+  <div className="flex flex-col h-[850px] gap-20">
+    <Hero />    
 
-export default Home;
+  </div>
+  
+</main>
+  );
+}

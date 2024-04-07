@@ -31,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-[#1C1917] overflow-y-scroll overflow-x-hidden`}>
+      <body className={`${quickSand.className} bg-[#1C1917] overflow-y-scroll overflow-x-hidden`}>
         {children}
       </body>
     </html>
