@@ -70,8 +70,17 @@ const DetailedPlotForm = ({ plotType }: { plotType: string }) => {
     .filter(Boolean);
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
     form.reset();
+    const postData = async () => {
+      const response = await fetch("/api/dataset/postData", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+      return response;
+    };
+
+    postData();
+    return data;
   };
 
   return (
@@ -105,7 +114,18 @@ const DetailedPlotForm = ({ plotType }: { plotType: string }) => {
                     <FormField
                       key={`${index}-${key}`}
                       control={form.control}
-                      name={`${key}`} // Use a unique name for each FormField
+                      name={
+                        key as
+                          | "title"
+                          | "Width"
+                          | "xLabel"
+                          | "yLabel"
+                          | "grid"
+                          | "color"
+                          | "markerSize"
+                          | "imageUrl"
+                          | "errors"
+                      }
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-white">{key}</FormLabel>

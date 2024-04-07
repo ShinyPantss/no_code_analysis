@@ -1,6 +1,4 @@
 import React from "react";
-import FetchButton from "@/components/fetch-btn";
-import SampleForm from "@/components/input-form";
 import Link from "next/link";
 
 type Props = {};

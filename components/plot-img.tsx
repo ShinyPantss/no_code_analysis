@@ -5,12 +5,13 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 const PlotImage = () => {
-  const [key, setKey] = useState<number>(0); // Key for revalidation
-  const plotType = useSelector((state: RootState) => state.imgUrl.plotType); // Get plotType from Redux store
+  const [key, setKey] = useState<number>(0);
+
+  const plotType = useSelector((state: RootState) => state.imgUrl.plotType);
+
   const imgUrl = useSelector((state: RootState) => state.imgUrl.imgUrl);
-  console.log(plotType)
+
   useEffect(() => {
-    // Increment key whenever plotType changes
     setKey((prevKey) => prevKey + 1);
   }, [plotType]);
 

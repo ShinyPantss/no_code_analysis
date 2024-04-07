@@ -10,7 +10,6 @@ const Navbar = () => {
   const [isScrolling, setScrolling] = useState(false);
 
   useEffect(
-    // TODO: Her Link icin fixle
     () => setActive(router === "/datasets" ? true : false),
     [isActive, router]
   );
@@ -40,7 +39,9 @@ const Navbar = () => {
         <ul className="text-1xl  text-stone-400 flex align-baseline justify-between w-3/8  max-md:hidden space-x-6">
           <Link
             className={`${
-              isActive ? "text-stone-200 bg-black border-stone-500 border rounded-lg px-2 mt-1 bg-transparent" : "mt-1 text-stone-500"
+              isActive
+                ? "text-stone-200 bg-black border-stone-500 border rounded-lg px-2 mt-1 bg-transparent"
+                : "mt-1 text-stone-500"
             } hover:text-yellow-400,`}
             href={"/datasets"}
           >
