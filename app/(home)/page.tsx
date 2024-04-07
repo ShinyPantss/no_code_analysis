@@ -1,11 +1,7 @@
-import React from 'react'
+import Image from "next/image";
 
-const HomePage = () => {
-  return (
-    <div>
-        Burasi ana sayfa
-    </div>
-  )
+import { Button } from "@/components/ui/button";
+
+export default function Home() {
+  return <div className="text-white">Burasi Home Page</div>;
 }
-
-export default HomePage

@@ -1,12 +1,9 @@
 "use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-
 import { Form, FormField, FormItem, FormLabel } from "@/components/ui/form";
-
 
 import DetailedPlotForm from "./detailed-input-form";
 import {
@@ -16,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
+import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 
 const formSchema = z.object({
@@ -27,28 +24,24 @@ function SampleForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      plotType: "Simple Plot",
+      plotType: "barPlot",
     },
   });
-  const [plotType, setPlotType] = useState("Bar Plot");
-
+  const [plotType, setPlotType] = useState("barPlot");
+  const dispatch = useDispatch();
   useEffect(() => {
     setPlotType(form.watch("plotType"));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [form.watch("plotType")]);
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-  }
+  
 
   return (
-    <div className=" bg-stone-900 flex">
-      <div className="w-full md:w-1/2 bg-stone-900 p-5  text-black flex flex-col shadow-sm shadow-black h-full  mt-28">
+    <div className=" bg-stone-900 flex w-full">
+      <div className="w-full bg-stone-900 p-5  text-black flex flex-col shadow-sm shadow-black h-full  ">
         <div className="w-full ">
           <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-8 p-5 text-black"
-            >
+            <form className="space-y-8 p-5 text-black">
               <FormField
                 control={form.control}
                 name="plotType"
@@ -60,11 +53,11 @@ function SampleForm() {
                         <SelectValue placeholder="Select Your Plot" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="Bar Plot">Bar Plot</SelectItem>
-                        <SelectItem value="Scatter Plot">
+                        <SelectItem value="barPlot">Bar Plot</SelectItem>
+                        <SelectItem value="scatterPlot">
                           Scatter Plot
                         </SelectItem>
-                        <SelectItem value="Simple Plot">Simple Plot</SelectItem>
+                        <SelectItem value="simplePlot">Simple Plot</SelectItem>
                       </SelectContent>
                     </Select>
                   </FormItem>
@@ -74,7 +67,6 @@ function SampleForm() {
           </Form>
           <DetailedPlotForm plotType={plotType} />
         </div>
-       
       </div>
     </div>
   );

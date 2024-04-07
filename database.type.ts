@@ -9,45 +9,102 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      plot_infos: {
+      barPlot: {
         Row: {
           created_at: string
-          graphColor: boolean | null
           grid: boolean | null
-          id: string
-          lineWidth: boolean | null
-          plotType: string | null
-          samplePlot: string | null
-          title: boolean | null
-          width: boolean | null
-          xLabel: boolean | null
-          yLabel: boolean | null
+          id: number
+          title: string | null
+          Width: number | null
+          xLabel: string | null
+          yLabel: string | null
         }
         Insert: {
           created_at?: string
-          graphColor?: boolean | null
           grid?: boolean | null
-          id?: string
-          lineWidth?: boolean | null
-          plotType?: string | null
-          samplePlot?: string | null
-          title?: boolean | null
-          width?: boolean | null
-          xLabel?: boolean | null
-          yLabel?: boolean | null
+          id?: number
+          title?: string | null
+          Width?: number | null
+          xLabel?: string | null
+          yLabel?: string | null
         }
         Update: {
           created_at?: string
-          graphColor?: boolean | null
           grid?: boolean | null
-          id?: string
-          lineWidth?: boolean | null
-          plotType?: string | null
-          samplePlot?: string | null
-          title?: boolean | null
-          width?: boolean | null
-          xLabel?: boolean | null
-          yLabel?: boolean | null
+          id?: number
+          title?: string | null
+          Width?: number | null
+          xLabel?: string | null
+          yLabel?: string | null
+        }
+        Relationships: []
+      }
+      scatterPlot: {
+        Row: {
+          color: string | null
+          created_at: string
+          grid: boolean | null
+          id: number
+          markerSize: number | null
+          title: string | null
+          xLabel: string | null
+          yLabel: string | null
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string
+          grid?: boolean | null
+          id?: number
+          markerSize?: number | null
+          title?: string | null
+          xLabel?: string | null
+          yLabel?: string | null
+        }
+        Update: {
+          color?: string | null
+          created_at?: string
+          grid?: boolean | null
+          id?: number
+          markerSize?: number | null
+          title?: string | null
+          xLabel?: string | null
+          yLabel?: string | null
+        }
+        Relationships: []
+      }
+      simplePlot: {
+        Row: {
+          created_at: string
+          grid: boolean | null
+          id: number
+          imageUrl: string | null
+          lineWidth: number | null
+          markerSize: number | null
+          title: string | null
+          xLabel: string | null
+          yLabel: string | null
+        }
+        Insert: {
+          created_at?: string
+          grid?: boolean | null
+          id?: number
+          imageUrl?: string | null
+          lineWidth?: number | null
+          markerSize?: number | null
+          title?: string | null
+          xLabel?: string | null
+          yLabel?: string | null
+        }
+        Update: {
+          created_at?: string
+          grid?: boolean | null
+          id?: number
+          imageUrl?: string | null
+          lineWidth?: number | null
+          markerSize?: number | null
+          title?: string | null
+          xLabel?: string | null
+          yLabel?: string | null
         }
         Relationships: []
       }
