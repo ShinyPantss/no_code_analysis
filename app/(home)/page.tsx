@@ -1,15 +1,9 @@
-import React from 'react'
-import Hero from '@/components/main/Hero'
-import Image from 'next/image'
+import React from "react";
+import Hero from "@/components/main/Hero";
+import Image from "next/image";
 
 const Home = () => {
-  return (
-    <main className="h-full w-full">
-      <div className="flex flex-col gap-20">
-        <Hero />
-      </div>
-    </main>
-  )
-}
+  return <main className="h-full w-ful text-white">burasi ANA SAYFA</main>;
+};
 
-export default Home
+export default Home;
