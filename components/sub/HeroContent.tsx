@@ -17,11 +17,15 @@ const HeroContent = () => {
       <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start">
         <motion.div
           variants={slideInFromTop}
-          className="welcome-box py-[15px] px-[7px] border border-[#7042f88b] opacity-[0.9]"
+          className="welcome-box py-[15px] px-[7px] border border-[#7042f88] opacity-[0.9]"
         >
           <SparklesIcon className="text-[#b49bff] mr-[10px] h-5 w-5" />
-          <h1 className="Welcome-text text-[13px]">
-            Full Stack Developer Portfolio
+          <h1 className="Welcome-text text-[20px] ">
+            Data analysis made easy with
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-green-700">
+              {" "}
+              DETAI{" "}
+            </span>
           </h1>
         </motion.div>
 
