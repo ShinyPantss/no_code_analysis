@@ -8,7 +8,7 @@ type Props = {};
 const DataSets = (props: Props) => {
   return (
     <>
-      <Link href="/datasets/${} " className="text-white">
+      <Link href="/datasets/sa " className="text-white relative z-40">
         go to dataset
       </Link>
     </>

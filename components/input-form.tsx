@@ -41,7 +41,7 @@ function SampleForm() {
   }
 
   return (
-    <div className=" bg-stone-900 flex">
+    <div className=" bg-stone-900 flex relative z-50 bg-transparent rounded-3xl">
       <div className="w-full md:w-1/2 bg-stone-900 p-5  text-black flex flex-col shadow-sm shadow-black h-full  mt-28">
         <div className="w-full ">
           <Form {...form}>
