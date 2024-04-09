@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { slideInFromLeft, slideInFromRight, slideInFromTop } from "@/utils/motion";
 import { SparklesIcon } from '@heroicons/react/24/solid';
 import Image from "next/image";
+import { VscGraph } from "react-icons/vsc";
 
 
 const HeroContent = () => {
@@ -20,9 +21,10 @@ const HeroContent = () => {
           className="welcome-box py-[15px] px-[7px] border border-[#7042f88] opacity-[0.9]"
         >
           <SparklesIcon className="text-[#b49bff] mr-[10px] h-5 w-5" />
-          <h1 className="Welcome-text text-[20px] ">
-            Data analysis made easy with
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-green-700">
+          
+          <h1 className="Welcome-text text-[20px] text-cyan-500">
+            Data analysis made easy with 
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-sky-500">
               {" "}
               DETAI{" "}
             </span>
@@ -45,10 +47,9 @@ const HeroContent = () => {
 
         <motion.p
           variants={slideInFromLeft(0.8)}
-          className="text-lg text-gray-400 my-5 max-w-[600px]"
+          className="text-lg text-cyan-600 my-5 max-w-[600px] font-semibold"
         >
-          I &apos;m a Full Stack Software Engineer with experience in Website,
-          Mobile, and Software development, Check out my projects and skills.
+          Easily Analyze Your Customized Data with our Artificial Intelligence and IT Development Solutions
         </motion.p>
         <motion.a
           variants={slideInFromLeft(1)}
