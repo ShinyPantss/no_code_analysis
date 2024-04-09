@@ -5,7 +5,6 @@ export async function GET(req: Request, res: Response) {}
 
 export async function POST(req: Request, res: Response) {
   const { plotType } = await req.json();
-  console.log(plotType,"asdasd");
 
   function getTableType<TTableName extends keyof Database["public"]["Tables"]>(
     tableName: TTableName
