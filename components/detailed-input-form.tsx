@@ -71,10 +71,14 @@ const DetailedPlotForm = ({ plotType }: { plotType: string }) => {
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     form.reset();
+    const formData = {
+      plotType: plotType,
+      data: data,
+    };
     const postData = async () => {
       const response = await fetch("/api/dataset/postData", {
         method: "POST",
-        body: JSON.stringify(data),
+        body: JSON.stringify(formData),
       });
       return response;
     };
