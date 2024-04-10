@@ -1,3 +1,4 @@
+
 import React from "react";
 import Hero from "@/components/main/Hero";
 import Image from "next/image";

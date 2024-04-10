@@ -1,106 +1,164 @@
 "use client";
+
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
-  FormControl,
   FormField,
+  FormControl,
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { supabase } from "@/lib/initSupabase";
-import { Database } from "@/database.type";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useState, useEffect } from "react";
-import { set, useForm } from "react-hook-form";
-import { z } from "zod";
 import { Button } from "./ui/button";
+import { Checkbox } from "./ui/checkbox";
+import z from "zod";
+import { formSchema } from "@/lib/generateFormSchema";
+import { useSelector, useDispatch } from "react-redux";
+import { setImgUrl } from "@/store/imgUrl/imgSlice";
 
 const DetailedPlotForm = ({ plotType }: { plotType: string }) => {
-  const [dataInfos, setDataInfos] = useState<plotAttributes>();
+  const [plotSettings, setPlotSettings] = useState<
+    z.infer<typeof formSchema>[] | undefined
+  >();
+  const [plotImg, setPlotImg] = useState<string | undefined>();
 
-  const [clearedData, setClearedData] = useState<string[] | null>([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchPlotInfos = async () => {
-      const data = await fetch("/api/dataset", {
-        method: "POST",
-        body: JSON.stringify({ plotType }),
-      });
-      setDataInfos(await data.json());
+      try {
+        const response = await fetch("/api/dataset", {
+          method: "POST",
+          body: JSON.stringify({ plotType }),
+        });
+        if (!response.ok) {
+          throw new Error("Failed to fetch plot settings");
+        }
+        const data = await response.json();
+        setPlotSettings(data);
+      } catch (error) {
+        console.error("Error fetching plot settings:", error);
+      }
     };
     fetchPlotInfos();
   }, [plotType]);
 
-  
-  console.log(dataInfos)
   useEffect(() => {
-    if (dataInfos) {
-      const cleared = Object.entries(dataInfos).filter(
-        (data) => data[1] === true
-      );
-      setClearedData(cleared.map((data) => data[0]));
-
-      const { samplePlot } = dataInfos;
+    if (plotSettings && !plotImg) {
+      plotSettings.forEach((plotSetting) => {
+        if (plotSetting.imageUrl) {
+          setPlotImg(plotSetting.imageUrl);
+        }
+      });
     }
-  }, [dataInfos]);
 
-  const defaultValues = clearedData?.reduce((acc, curr) => {
-    acc[curr] = "hi";
-    return acc;
-  }, {} as { [key: string]: string | boolean | number });
-  console.log(defaultValues);
-
-  const formSchema = z.object(
-    (clearedData || []).reduce((acc, curr) => {
-      acc[curr] = z.string();
-      return acc;
-    }, {} as { [key: string]: z.ZodString | z.ZodBoolean | z.ZodNumber })
-  );
+    dispatch(setImgUrl(plotImg as string));
+  }, [plotSettings, plotImg, dispatch]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { ...defaultValues },
+    defaultValues: {
+      grid: false,
+    },
   });
+  const { errors } = form.formState;
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
+  const allErrors = Object.values(errors)
+    .map((error) => error?.message)
+    .filter(Boolean);
+
+  const onSubmit = (data: z.infer<typeof formSchema>) => {
+    form.reset();
+    const formData = {
+      plotType: plotType,
+      data: data,
+    };
+    const postData = async () => {
+      const response = await fetch("/api/dataset/postData", {
+        method: "POST",
+        body: JSON.stringify(formData),
+      });
+      return response;
+    };
+
+    postData();
+    return data;
+  };
 
   return (
-    <div className="w-full h-full  bg-stone-900  p-5   text-black   shadow-black">
+    <div className="w-full h-full bg-stone-900 p-5 text-black shadow-black">
       <Form {...form}>
-        <div className=" text-black w-full grid grid-cols-2 md:grid-cols-4 gap-4">
-          {dataInfos
-            ? clearedData &&
-              Object.entries(clearedData).map((data) => {
-                return data[1] ? (
-                  <FormField
-                    key={data[1]}
-                    control={form.control}
-                    name={data[1]}
-                    render={({ field }) => (
-                      <FormItem className="">
-                        <FormLabel className="text-white">{data[1]}</FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder={`Please Enter ${data[1]}`}
-                            {...field}
-                            value={field.value} // Convert the value to a string
-                            className="outline-8"
-                          />
-                        </FormControl>
-                      </FormItem>
-                    )}
-                  />
-                ) : null;
-              })
-            : null}
-        </div>
-        <div className="w-full flex justify-end mt-2">
-          <Button type="submit" variant={"emerald"} className="">
-            Submit
-          </Button>
-        </div>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <div className="text-black w-full grid grid-cols-2 md:grid-cols-4 items-baseline gap-4">
+            {plotSettings &&
+              plotSettings.map((plotSetting, index) =>
+                Object.entries(plotSetting).map(([key, value]) =>
+                  key == "grid" ? (
+                    <FormField
+                      key={`${index}-${key}`}
+                      control={form.control}
+                      name={key}
+                      render={({ field }) => (
+                        <FormItem className=" p-4 border">
+                          <FormLabel className="text-white">{key}</FormLabel>
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value}
+                              onCheckedChange={(isChecked) =>
+                                field.onChange(isChecked)
+                              }
+                            />
+                          </FormControl>
+                        </FormItem>
+                      )}
+                    />
+                  ) : (
+                    <FormField
+                      key={`${index}-${key}`}
+                      control={form.control}
+                      name={
+                        key as
+                          | "title"
+                          | "Width"
+                          | "xLabel"
+                          | "yLabel"
+                          | "grid"
+                          | "color"
+                          | "markerSize"
+                          | "imageUrl"
+                          | "errors"
+                      }
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-white">{key}</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder={`Please Enter ${key}`}
+                              {...field}
+                              value={field.value?.toString() || ""}
+                              className="outline-8"
+                            />
+                          </FormControl>
+                        </FormItem>
+                      )}
+                    />
+                  )
+                )
+              )}
+          </div>
+          <div className="w-full flex justify-end mt-2">
+            <Button type="submit" variant="emerald" className="">
+              Submit
+            </Button>
+          </div>
+          <div className="text-rose-600">
+            {allErrors.map((error) => (
+              <p key={error}> *{error} Please </p>
+            ))}
+          </div>
+        </form>
       </Form>
     </div>
   );

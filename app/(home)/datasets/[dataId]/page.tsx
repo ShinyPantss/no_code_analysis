@@ -1,13 +1,15 @@
-import DetailedPlotForm from "@/components/detailed-input-form";
+"use client"
 import SampleForm from "@/components/input-form";
+import PlotImage from "@/components/plot-img";
 import React from "react";
 
 type Props = {};
 
 const DataInterface = (props: Props) => {
   return (
-    <div className="h-full w-full bg-stone-900">
+    <div className=" w-full bg-stone-900 grid grid-cols-2 ">
       <SampleForm />
+      <PlotImage />
     </div>
   );
 };

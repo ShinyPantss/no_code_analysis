@@ -5,7 +5,10 @@ import { Quicksand } from "next/font/google";
 import Navbar from "@/components/nav-bar";
 import StarsCanvas from "@/components/main/StarBackground";
 
+
+
 const inter = Inter({ subsets: ["latin"] });
+
 
 export const metadata: Metadata = {
   title: "Detai",
@@ -29,6 +32,7 @@ export default function RootLayout({
         <StarsCanvas />
         {children}
       </body>
+
     </html>
   );
 }

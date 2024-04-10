@@ -12,7 +12,6 @@ const Navbar = () => {
   const [isScrolling, setScrolling] = useState(false);
 
   useEffect(
-    // TODO: Her Link icin fixle
     () => setActive(router === "/datasets" ? true : false),
     [isActive, router]
   );
@@ -36,6 +35,7 @@ const Navbar = () => {
           <Link
             href="/"
             className="h-auto w-auto flex flex-row items-center"
+
           >
             <Image
               src="/NavLogo.png"
