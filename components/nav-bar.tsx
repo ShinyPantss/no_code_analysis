@@ -1,8 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-
 import { usePathname } from "next/navigation";
+import Hero from "./main/Hero";
+import { Socials } from "@/constants";
+import Image from "next/image";
 
 const Navbar = () => {
   const router = usePathname();
@@ -14,46 +16,75 @@ const Navbar = () => {
     [isActive, router]
   );
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolling(window.scrollY > 10);
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setScrolling(window.scrollY > 10);
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
+  //   window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
 
   return (
-    <div className="w-full bg-stone-900 border-b border-black flex p-7 px-16 relative top-0 justify-between shadow-md  shadow-black ">
-      <div className="flex justify-between w-full xl:mx-32 ">
-        <Link href={"/"}>
-          <p className="text-emerald-400 text-2xl max-md:text-sm">
-            {" "}
-            No Code Analyze
-          </p>
-        </Link>
-
-        <ul className="text-1xl  text-stone-400 flex align-baseline justify-between w-3/8  max-md:hidden space-x-6">
+    <div>
+      <div className="w-full h-[65px] sticky top-0 shadow-lg shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md z-50 px-10">
+        <div className="w-full h-full flex flex-row items-center justify-between m-auto px-[10px]">
           <Link
-            className={`${
-              isActive
-                ? "text-stone-200 bg-black border-stone-500 border rounded-lg px-2 mt-1 bg-transparent"
-                : "mt-1 text-stone-500"
-            } hover:text-yellow-400,`}
-            href={"/datasets"}
+            href="/"
+            className="h-auto w-auto flex flex-row items-center"
+
           >
-            Data Sets
+            <Image
+              src="/NavLogo.png"
+              alt="logo"
+              width={70}
+              height={70}
+              className="cursor-pointer hover:animate-slowspin"
+            />
+
+            <span className="font-bold ml-[10px] hidden md:block text-gray-300">
+              DETAI
+            </span>
           </Link>
+          <div className="w-[500px] h-full flex flex-row items-center justify-between md:mr-20">
+            <div className="flex items-center justify-between w-full h-auto border border-[#7042f861] bg-[#0300145e] mr-[15px] px-[20px] py-[10px] rounded-full text-gray-200">
+              <Link
+                className={`${
+                  isActive
+                    ? "text-stone-200 bg-black border-stone-500 border rounded-lg px-2 mt-1 bg-transparent"
+                    : "mt-1 text-stone-500"
+                } hover:text-yellow-400,`}
+                href={"/datasets"}
+              >
+                Data Sets
+              </Link>
 
-          <li className="text-stone-500 mt-1"> Upload Data</li>
-
-          <li className="text-stone-500 mt-1">Plots</li>
-
-          <li className="text-stone-500 mt-1">Contact Us</li>
-        </ul>
+              <Link href="/uploadData" className="cursor-pointer">
+                Upload Data
+              </Link>
+              <a href="#skills" className="cursor-pointer">
+                Plots
+              </a>
+              <a href="#projects" className="cursor-pointer">
+                Contact Us
+              </a>
+            </div>
+          </div>
+          <div className="flex flex-row gap-5">
+          {Socials.map((social) => (
+            <Image
+              src={social.src}
+              alt={social.name}
+              key={social.name}
+              width={24}
+              height={24}
+            />
+          ))}
+        </div>
+        </div>
       </div>
     </div>
   );

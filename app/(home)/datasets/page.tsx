@@ -17,6 +17,7 @@ const constans = {
 
 const DataSets = (props: Props) => {
   return (
+
     <div className="flex items-center justify-center px-4">
       <div className="grid lg:grid-cols-4  md:grid-cols-3 grid-cols-2   justify-center items-center   gap-10 mt-12">
         {props.data.name &&
@@ -29,6 +30,7 @@ const DataSets = (props: Props) => {
           })}
       </div>
     </div>
+
   );
 };
 
