@@ -11,7 +11,7 @@ const Card = () => {
         href={"/"}
       >
         <Image
-          src="/deneme.jpeg"
+          src="/DataSet-Type.jpg"
           alt=""
           width={300}
           height={200}

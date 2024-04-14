@@ -1,3 +1,5 @@
+import { color } from "framer-motion";
+
 export const Skill_data = [
     {
       skill_name: "Html 5",
