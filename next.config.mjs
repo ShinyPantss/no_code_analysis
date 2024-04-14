@@ -20,5 +20,11 @@ export const images = {
       port: "",
       pathname: "/**",
     },
+    {
+      protocol: "https",
+      hostname: "datausa.io",
+      port: "",
+      pathname: "/**",
+    },
   ],
 };

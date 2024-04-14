@@ -2,11 +2,16 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { slideInFromLeft, slideInFromRight, slideInFromTop } from "@/utils/motion";
-import { SparklesIcon } from '@heroicons/react/24/solid';
+import {
+  slideInFromLeft,
+  slideInFromRight,
+  slideInFromTop,
+} from "@/utils/motion";
+import { SparklesIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import { VscGraph } from "react-icons/vsc";
-
+import { Button } from "../ui/button";
+import Link from "next/link";
 
 const HeroContent = () => {
   return (
@@ -21,9 +26,9 @@ const HeroContent = () => {
           className="welcome-box py-[15px] px-[7px] border border-[#7042f88] opacity-[0.9]"
         >
           <SparklesIcon className="text-[#b49bff] mr-[10px] h-5 w-5" />
-          
+
           <h1 className="Welcome-text text-[20px] text-cyan-500">
-            Data analysis made easy with 
+            Data analysis made easy with
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-sky-500">
               {" "}
               DETAI{" "}
@@ -49,14 +54,22 @@ const HeroContent = () => {
           variants={slideInFromLeft(0.8)}
           className="text-lg text-cyan-600 my-5 max-w-[600px] font-semibold"
         >
-          Easily Analyze Your Customized Data with our Artificial Intelligence and IT Development Solutions
+          Easily Analyze Your Customized Data with our Artificial Intelligence
+          and IT Development Solutions
         </motion.p>
-        <motion.a
-          variants={slideInFromLeft(1)}
-          className="py-2 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
-        >
-          Learn More !
-        </motion.a>
+        <div className="w-full h-full  flex gap-2 ">
+          <Button className="w-1/2 h-20 bg-transparent border hover:bg-black z-50 text-2xl">
+            Emrein Kocaman...
+          </Button>
+
+          <Link
+            href={"/uploadData"}
+            className="w-1/2 h-20 text-2xl bg-transparent border flex items-center justify-center text-white rounded-lg hover:bg-indigo-700"
+          >
+            {" "}
+            UPLOAD DATA
+          </Link>
+        </div>
       </div>
 
       <motion.div
