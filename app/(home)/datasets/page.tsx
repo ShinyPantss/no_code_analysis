@@ -3,6 +3,7 @@ import Link from "next/link";
 import Card from "@/components/card";
 import { supabase } from "@/lib/initSupabase";
 import { NextResponse } from "next/server";
+import { DataArrayTexture } from "three";
 
 type Props = {
   data: {
@@ -11,31 +12,35 @@ type Props = {
   };
 };
 
+const fetchDatasets = async () => {
+  const { data, error } = await supabase.from("Data_Api").select("*");
+  if (error) {
+    throw error;
+  }
+  return data;
+};
 
+const DataSets = async (props: Props) => {
+  const data = await fetchDatasets();
 
-const DataSets = (props: Props) => {
   return (
-
     <div className="flex items-center justify-center px-4">
       <div className="grid lg:grid-cols-4  md:grid-cols-3 grid-cols-2   justify-center items-center   gap-10 mt-12">
         {/** TODO: Will be applied generic card  */}
 
-        {/* {props.data.name &&
-          Object.values(props).map((key) => {
+        {data &&
+          Object.values(data).map((key) => {
+            if (!key.data_name || !key.data_api) {
+              return;
+            }
             return (
-              <div key={props.data.name} className="">
-                <Card  />
+              <div key={key.id} className="">
+                <Card dataName={key.data_name} id={key.id} api={key.data_api} />
               </div>
             );
-          })} */}
-
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
+          })}
       </div>
     </div>
-
   );
 };
 
