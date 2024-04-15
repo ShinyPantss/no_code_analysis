@@ -23,12 +23,13 @@ const Card = ({ dataName, id, api }: Card) => {
       },
       body: JSON.stringify(dataSetInformations),
     });
+    
   };
 
   return (
     <Link
       className="bg-stone-900  text-white text-2xl border border-white rounded-xl overflow-hidden shadow-lg relative max-sm:h-28 max-sm:w-36 md:h-52 md:w-60 flex justify-center items-center z-30 "
-      href={`datasets`}
+      href={`datasets/${id}`}
       onClick={sendApiToServer}
     >
       <Image
