@@ -88,7 +88,7 @@ const DetailedPlotForm = ({ plotType }: { plotType: string }) => {
   };
 
   return (
-    <div className="w-full h-full bg-stone-900 p-5 text-black shadow-black">
+    <div className="w-full  bg-stone-900 p-5 text-black shadow-black">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="text-black w-full grid grid-cols-2 md:grid-cols-4 items-baseline gap-4">

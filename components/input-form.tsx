@@ -34,15 +34,12 @@ function SampleForm() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [form.watch("plotType")]);
 
-  
-
   return (
-    <div className=" bg-stone-900 flex relative z-50 bg-transparent rounded-3xl">
-      <div className="w-full md:w-1/2 bg-stone-900 p-5  text-black flex flex-col shadow-sm shadow-black h-full  mt-28">
-
+    <div className=" bg-stone-900 flex relative z-50 bg-transparent rounded-3xl w-full">
+      <div className="w-full border  border-slate-200 bg-stone-900 p-5  text-black flex flex-col shadow-sm shadow-black h-full  ">
         <div className="w-full ">
           <Form {...form}>
-            <form className="space-y-8 p-5 text-black">
+            <form className="space-y-8 p-5 text-black ">
               <FormField
                 control={form.control}
                 name="plotType"

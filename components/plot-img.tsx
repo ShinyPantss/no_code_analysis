@@ -16,7 +16,7 @@ const PlotImage = () => {
   }, [plotType]);
 
   return (
-    <div>
+    <div className=" flex items-center justify-center border">
       <Image
         key={key}
         src={imgUrl || ""}

@@ -7,7 +7,7 @@ type Props = {};
 
 const DataInterface = (props: Props) => {
   return (
-    <div className=" w-full bg-stone-900 grid grid-cols-2 ">
+    <div className=" w-full bg-stone-900 grid grid-cols-2  gap-4 py-10">
       <SampleForm />
       <PlotImage />
     </div>
