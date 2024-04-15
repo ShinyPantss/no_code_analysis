@@ -4,21 +4,22 @@ import {
   RxGithubLogo,
   RxInstagramLogo,
   RxTwitterLogo,
-  RxLinkedinLogo,
+  RxLinkedinLogo
 } from "react-icons/rx";
-
+import { BsLinkedin } from "react-icons/bs";
+import { BsTwitterX } from "react-icons/bs";
 import { FaYoutube } from "react-icons/fa";
 import { Button } from "../ui/button";
 
 const Footer = () => {
   return (
-    <div className="w-full h-full bg-transparent text-gray-200 shadow-lg p-[100px] ">
+    <div className="w-full h-full bg-transparent text-gray-200 shadow-lg p-[100px]">
       
 
       <div className="w-full flex flex-col items-center justify-center m-auto">
-        <div className="w-full h-full flex flex-row items-center justify-around flex-wrap ">
+        <div className="w-full h-full flex flex-row items-center justify-around flex-wrap mb-5">
           <div className="min-w-[200px] h-auto flex flex-col items-center justify-start">
-            <div className="font-bold text-[16px] text-cyan-500 ">
+            <div className="font-bold text-[20px] text-cyan-500">
               Community
             </div>
             <p className="flex flex-row items-center my-[15px] cursor-pointer">
@@ -35,7 +36,7 @@ const Footer = () => {
             </p>
           </div>
           <div className="min-w-[200px] h-auto flex flex-col items-center justify-start">
-            <div className="font-bold text-[16px]  text-cyan-500">
+            <div className="font-bold text-[20px]  text-cyan-500">
               Social Media
             </div>
             <p className="flex flex-row items-center my-[15px] cursor-pointer">
@@ -43,16 +44,16 @@ const Footer = () => {
               <span className="text-[15px] ml-[6px]">Instagram</span>
             </p>
             <p className="flex flex-row items-center my-[15px] cursor-pointer">
-              <RxGithubLogo />
+              <BsTwitterX />
               <span className="text-[15px] ml-[6px]">Twitter</span>
             </p>
             <p className="flex flex-row items-center my-[15px] cursor-pointer">
-              <RxDiscordLogo />
+              <BsLinkedin />
               <span className="text-[15px] ml-[6px]">Linkedin</span>
             </p>
           </div>
           <div className="min-w-[200px] h-auto flex flex-col items-center justify-start">
-            <div className="font-bold text-[16px]  text-cyan-500">About</div>
+            <div className="font-bold text-[20px]  text-cyan-500">About</div>
             <p className="flex flex-row items-center my-[15px] cursor-pointer">
               <span className="text-[15px] ml-[6px]">Become Sponsor</span>
             </p>
@@ -61,7 +62,7 @@ const Footer = () => {
             </p>
             <p className="flex flex-row items-center my-[15px] cursor-pointer">
               <span className="text-[15px] ml-[6px]">
-                mifwebchain@gmail.com
+                detaianalytic@gmail.com
               </span>
             </p>
           </div>

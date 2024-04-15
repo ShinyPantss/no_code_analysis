@@ -11,6 +11,7 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import Link from "next/link";
 
+
 const HeroContent = () => {
   return (
     <motion.div
@@ -60,7 +61,7 @@ const HeroContent = () => {
 
           <Link
             href={"/uploadData"}
-            className="w-1/2 h-20 text-2xl bg-transparent border flex items-center justify-center text-white rounded-lg hover:bg-indigo-700"
+            className="w-1/2 h-20 text-2xl bg-transparent border flex items-center justify-center text-white rounded-lg hover:bg-indigo-800"
           >
             {" "}
             UPLOAD DATA
