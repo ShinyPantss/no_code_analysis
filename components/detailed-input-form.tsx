@@ -17,6 +17,7 @@ import z from "zod";
 import { formSchema } from "@/lib/generateFormSchema";
 import { useSelector, useDispatch } from "react-redux";
 import { setImgUrl } from "@/store/imgUrl/imgSlice";
+import { RootState } from "@/store/store";
 
 const DetailedPlotForm = ({ plotType }: { plotType: string }) => {
   const [plotSettings, setPlotSettings] = useState<
@@ -46,15 +47,20 @@ const DetailedPlotForm = ({ plotType }: { plotType: string }) => {
   }, [plotType]);
 
   useEffect(() => {
-    if (plotSettings && !plotImg) {
+    if (plotSettings ) {
+      console.log("calistims")
       plotSettings.forEach((plotSetting) => {
         if (plotSetting.imageUrl) {
           setPlotImg(plotSetting.imageUrl);
         }
+        
+        console.log(plotSetting.imageUrl);
       });
+      
     }
-
-    dispatch(setImgUrl(plotImg as string));
+    console.log("calistim2")
+    
+    dispatch(setImgUrl(plotImg || ""));
   }, [plotSettings, plotImg, dispatch]);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -69,22 +75,21 @@ const DetailedPlotForm = ({ plotType }: { plotType: string }) => {
     .map((error) => error?.message)
     .filter(Boolean);
 
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
     form.reset();
     const formData = {
       plotType: plotType,
       data: data,
     };
-    const postData = async () => {
-      const response = await fetch("/api/dataset/postData", {
-        method: "POST",
-        body: JSON.stringify(formData),
-      });
-      return response;
-    };
 
-    postData();
-    return data;
+    const response = await fetch("/api/dataset/postData", {
+      method: "POST",
+      body: JSON.stringify(formData),
+    });
+    const json: string = await response.json();
+    dispatch(setImgUrl(json));
+
+    return json;
   };
 
   return (
