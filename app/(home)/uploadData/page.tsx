@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import React from "react";
+import { MdOutlineUploadFile } from "react-icons/md";
 
 const UploadData = () => {
   return (
@@ -10,8 +11,9 @@ const UploadData = () => {
           SIMPLY
         </span>
       </p>
-      <Button className="bg-transparent border-4 shadow-lg border-stone-400 hover:bg-neutral-200 hover:text-black rounded-xl hover:border-stone-200 transition-all  duration-150 text-6xl text-slate-100 p-40">
+      <Button className="bg-transparent border-4 shadow-lg border-stone-200 hover:bg-cyan-500 hover:text-black rounded-xl hover:border-stone-200 transition-all  duration-150 text-6xl text-slate-100 p-40">
         Upload Your Data
+        <MdOutlineUploadFile/>
       </Button>
     </div>
   );

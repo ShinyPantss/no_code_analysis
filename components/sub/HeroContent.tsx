@@ -13,6 +13,7 @@ import { VscGraph } from "react-icons/vsc";
 import { Button } from "../ui/button";
 import Link from "next/link";
 
+
 const HeroContent = () => {
   return (
     <motion.div
@@ -58,13 +59,13 @@ const HeroContent = () => {
           and IT Development Solutions
         </motion.p>
         <div className="w-full h-full  flex gap-2 ">
-          <Button className="w-1/2 h-20 bg-transparent border hover:bg-black z-50 text-2xl">
-            Emrein Kocaman...
+          <Button className="w-1/2 h-20 bg-transparent border hover:bg-cyan-500 z-50 text-2xl">
+            DATA SETS
           </Button>
 
           <Link
             href={"/uploadData"}
-            className="w-1/2 h-20 text-2xl bg-transparent border flex items-center justify-center text-white rounded-lg hover:bg-indigo-700"
+            className="w-1/2 h-20 text-2xl bg-transparent border flex items-center justify-center text-white rounded-lg hover:bg-indigo-800"
           >
             {" "}
             UPLOAD DATA
