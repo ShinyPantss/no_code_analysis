@@ -5,12 +5,7 @@ import { supabase } from "@/lib/initSupabase";
 import { NextResponse } from "next/server";
 import { DataArrayTexture } from "three";
 
-type Props = {
-  data: {
-    name: string;
-    imgUrl: string;
-  };
-};
+
 
 const fetchDatasets = async () => {
   const { data, error } = await supabase.from("Data_Api").select("*");
@@ -20,7 +15,7 @@ const fetchDatasets = async () => {
   return data;
 };
 
-const DataSets = async (props: Props) => {
+const DataSets = async () => {
   const data = await fetchDatasets();
 
   return (
