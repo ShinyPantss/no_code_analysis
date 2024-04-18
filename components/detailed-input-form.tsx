@@ -26,8 +26,6 @@ const DetailedPlotForm = ({ plotType }: { plotType: string }) => {
   const [plotImg, setPlotImg] = useState<string | undefined>();
   const dispatch = useDispatch();
 
-
-
   useEffect(() => {
     const fetchPlotInfos = async () => {
       try {
@@ -47,26 +45,17 @@ const DetailedPlotForm = ({ plotType }: { plotType: string }) => {
     fetchPlotInfos();
   }, [plotType]);
 
-
-
   useEffect(() => {
-    if (plotSettings ) {
-      console.log("calistims")
+    if (plotSettings) {
       plotSettings.forEach((plotSetting) => {
         if (plotSetting.imageUrl) {
           setPlotImg(plotSetting.imageUrl);
         }
-        
-        console.log(plotSetting.imageUrl);
       });
-      
     }
-    console.log("calistim2")
-    
+
     dispatch(setImgUrl(plotImg || ""));
   }, [plotSettings, plotImg, dispatch]);
-
-
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

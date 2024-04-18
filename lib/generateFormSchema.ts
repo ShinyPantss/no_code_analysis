@@ -3,7 +3,7 @@ export const formSchema = z.object({
     title: z.string().optional(),
     lineWidth: z.coerce.number().optional(),
     Width: z.coerce.number().optional(),
-    xLabel: z.string().optional(),
+    xLabel: z.string().max(50).optional(),
     yLabel: z.string().optional(),
     grid: z.boolean().optional(),
     color: z.string().optional(),
