@@ -46,7 +46,7 @@ const Navbar = () => {
             </span>
           </Link>
           <div className="w-[500px] h-full flex flex-row items-center justify-between md:mr-20">
-            <div className="flex items-center justify-between w-full h-auto border border-[#7042f861] bg-[#0300145e] mr-[15px] px-[20px] py-[10px] rounded-full text-gray-500">
+            <div className="flex items-center justify-between w-full h-auto border border-[#e6e3efb4] bg-[#0300145e] mr-[15px] px-[20px] py-[10px] rounded-full text-gray-300">
               <Link
                 className={`${
                   isActive
@@ -58,14 +58,14 @@ const Navbar = () => {
                 Data Sets
               </Link>
 
-              <Link href="/uploadData" className="cursor-pointer">
+              <Link href="/uploadData" className="cursor pointer">
                 Upload Data
               </Link>
-              <a href="#skills" className="cursor-pointer">
+              <a href="#Plots" className="cursor-pointer">
                 Plots
               </a>
-              <a href="#projects" className="cursor-pointer">
-                Contact Us
+              <a href="/Contact" className="cursor-pointer">
+                Contact
               </a>
             </div>
           </div>
