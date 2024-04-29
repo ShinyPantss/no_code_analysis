@@ -49,7 +49,7 @@ const HeroContent = () => {
 
         <motion.p
           variants={slideInFromLeft(0.8)}
-          className="text-xl text-purple-400 my-5 max-w-[600px] font-bold"
+          className="text-xl text-purple-500 my-5 max-w-[600px] font-bold"
         >
           Easily Analyze Your Customized Data with our Artificial Intelligence
           and IT Development Solutions

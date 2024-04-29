@@ -3,7 +3,7 @@ import React, { MouseEventHandler, useCallback, useState } from "react";
 import { Button } from "./ui/button";
 import { useDropzone } from "react-dropzone";
 import { GrDocumentUpload } from "react-icons/gr";
-import { SiReact } from "react-icons/si";
+import { SiReactos } from "react-icons/si";
 import { supabase } from "@/lib/initSupabase";
 const UploadDataButton = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -77,21 +77,31 @@ const UploadDataButton = () => {
               {" "}
               Drag and drop files here or
               <br />
-              <span className="text-4xl text-cyan-500 ml-2">Upload a file </span><GrDocumentUpload className="text-5xl ml-2 mt-2 text-white"/>
+              <span className="text-4xl text-cyan-500 ml-2">Select a file </span><GrDocumentUpload className="text-5xl ml-2 mt-2 text-white"/>
             </p>
           )}
         </div>
       </div>
-
+      
+      <div className="flex space-x-4">
       {selectedFile && (
         <Button
-          className="bg-transparent border-4 shadow-lg border-stone-200 hover:bg-cyan-500 hover:text-white rounded-xl hover:border-stone-200 hover:scale-110 transition-all duration-150 text-6xl text-slate-100 p-20 z-10"
+          className="bg-transparent border-4 shadow-lg border-stone-200 hover:bg-cyan-500 hover:text-white rounded-xl backdrop-blur-md hover:border-stone-200 hover:scale-110 transition-all duration-150 text-6xl text-slate-100 p-20 z-10"
           disabled={!selectedFile}
         >
-          <span className="pr-2 text-6xl">Analyze</span> <SiReact/>
+          <span className="pr-2 text-4xl">Analyze</span> <SiReactos />
         </Button>
         
       )}
+      
+        <Button
+          className="bg-transparent border-4 shadow-lg border-stone-200 hover:bg-cyan-500 hover:text-white rounded-xl backdrop-blur-md hover:border-stone-200 hover:scale-110 transition-all duration-150 text-6xl text-slate-100 p-20 z-10" 
+               
+        >
+          <span className="pr-2 text-4xl">Upload Data</span> <GrDocumentUpload className="text-5xl ml-2 mt-2 text-white"/>
+        </Button>
+
+      </div>
 
     </form>
   );

@@ -87,7 +87,7 @@ const DetailedPlotForm = ({ plotType }: { plotType: string }) => {
   };
 
   return (
-    <div className="w-full  bg-stone-900 p-5 text-black shadow-black">
+    <div className="w-full  bg-stone-800 p-5 text-black shadow-black blur-10 rounded-md border-4 border-white-500">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="text-black w-full grid grid-cols-2 md:grid-cols-4 items-baseline gap-4">
@@ -100,7 +100,7 @@ const DetailedPlotForm = ({ plotType }: { plotType: string }) => {
                       control={form.control}
                       name={key}
                       render={({ field }) => (
-                        <FormItem className=" p-4 border">
+                        <FormItem className=" p-3 border-4">
                           <FormLabel className="text-white">{key}</FormLabel>
                           <FormControl>
                             <Checkbox
@@ -137,7 +137,7 @@ const DetailedPlotForm = ({ plotType }: { plotType: string }) => {
                               placeholder={`Please Enter ${key}`}
                               {...field}
                               value={field.value?.toString() || ""}
-                              className="outline-8"
+                              className="outline-8 font-medium"
                             />
                           </FormControl>
                         </FormItem>
@@ -147,14 +147,14 @@ const DetailedPlotForm = ({ plotType }: { plotType: string }) => {
                 )
               )}
           </div>
-          <div className="w-full flex justify-end mt-2">
-            <Button type="submit" variant="emerald" className="">
+          <div className="w-full flex justify-end">
+            <Button type="submit" variant="emerald" className="rounded-lg  px-8 py-4 border-2  text-white border-white-600 hover:bg-cyan-500  ease-in-out duration-300">
               Submit
             </Button>
           </div>
           <div className="text-rose-600">
             {allErrors.map((error) => (
-              <p key={error}> *{error} Please </p>
+              <p key={error}> *{error} Please fill in the empty fields </p>
             ))}
           </div>
         </form>

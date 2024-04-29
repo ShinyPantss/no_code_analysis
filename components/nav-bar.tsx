@@ -34,15 +34,15 @@ const Navbar = () => {
         <div className="w-full h-full flex flex-row items-center justify-between m-auto px-[10px]">
           <Link href="/" className="h-auto w-auto flex flex-row items-center">
             <Image
-              src="/NavLogo.png"
+              src="/DETAI-Logo.png"
               alt="logo"
-              width={70}
-              height={70}
+              width={220}
+              height={140}
               className="cursor-pointer hover:animate-slowspin"
             />
 
             <span className="font-bold ml-[10px] hidden md:block text-gray-300">
-              DETAI
+              
             </span>
           </Link>
           <div className="w-[500px] h-full flex flex-row items-center justify-between md:mr-20">
@@ -64,9 +64,9 @@ const Navbar = () => {
               <a href="#Plots" className="cursor-pointer">
                 Plots
               </a>
-              <a href="/Contact" className="cursor-pointer">
+              <Link href="/contact" className="cursor-pointer">
                 Contact
-              </a>
+              </Link>
             </div>
           </div>
           <div className="flex flex-row gap-5">
