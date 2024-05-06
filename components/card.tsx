@@ -22,7 +22,6 @@ const Card = ({ dataName, id, api }: Card) => {
   const sendApiToServer = async (
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
-    event.preventDefault();
     const response = await fetch("/api/dataset/datasetAPI", {
       method: "POST",
       headers: {
@@ -31,8 +30,6 @@ const Card = ({ dataName, id, api }: Card) => {
       body: JSON.stringify(dataSetInformations),
     });
     const json = await response.json();
-    dispatch(setColumnNames(json.columnNames));
-    window.location.href = `datasets/${id}`;
   };
 
   return (

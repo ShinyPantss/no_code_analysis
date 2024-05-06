@@ -5,7 +5,7 @@ import { NextApiRequest } from "next";
 export async function POST(req: Request, res: Response) {
   const data = await req.json();
 
-  const response = await fetch("http://127.0.0.1:5000/datasetInfos", {
+  const response = await fetch("http://127.0.0.1:5000/dataSetInfos", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -18,13 +18,4 @@ export async function POST(req: Request, res: Response) {
   return NextResponse.json(json);
 }
 
-export async function GET(req: Request, res: Response) {
-  const { searchParams } = new URL(req.url)
 
-  const id = searchParams.get('dataSetId')
-  console.log(id,"asdasd")
-
-
-  return NextResponse.json({ id: id });
-  // const data = await supabase.from("DataSets").select("*").eq("id");
-}
