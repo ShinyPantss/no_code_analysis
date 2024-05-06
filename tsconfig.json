@@ -7,10 +7,10 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "preserve", // Consider changing to "react-jsx" if not using Babel for JSX
     "incremental": true,
     "plugins": [
       {

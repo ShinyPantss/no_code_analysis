@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,15 +14,29 @@ import { Button } from "./ui/button";
 import { Checkbox } from "./ui/checkbox";
 import z from "zod";
 import { formSchema } from "@/lib/generateFormSchema";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setImgUrl } from "@/store/imgUrl/imgSlice";
-import { RootState } from "@/store/store";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
+import { cn } from "@/lib/utils";
 
-const DetailedPlotForm = ({ plotType }: { plotType: string }) => {
+const DetailedPlotForm = ({
+  plotType,
+  dataColumns,
+}: {
+  plotType: string;
+  dataColumns: string[];
+}) => {
   const [plotSettings, setPlotSettings] = useState<
     z.infer<typeof formSchema>[] | undefined
   >();
   const [plotImg, setPlotImg] = useState<string | undefined>();
+  const [loading, setLoading] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -61,35 +74,112 @@ const DetailedPlotForm = ({ plotType }: { plotType: string }) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       grid: false,
+      xColumn: "",
+      yColumn: "",
     },
   });
-  const { errors } = form.formState;
+  const { errors, isSubmitting } = form.formState;
+  console.log(isSubmitting);
 
   const allErrors = Object.values(errors)
     .map((error) => error?.message)
     .filter(Boolean);
-
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    form.reset();
+    setLoading(true);
+
     const formData = {
       plotType: plotType,
       data: data,
     };
+    try {
+      const response = await fetch("/api/dataset/postData", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-    const response = await fetch("/api/dataset/postData", {
-      method: "POST",
-      body: JSON.stringify(formData),
-    });
-    const json: string = await response.json();
-    dispatch(setImgUrl(json));
+      if (!response.ok) {
+        throw new Error("Failed to submit plot data");
+      }
 
-    return json;
+      const json = await response.json();
+      dispatch(setImgUrl(json));
+
+      form.reset();
+      return json;
+    } catch (error) {
+      console.error("Error submitting form data:", error);
+      return null;
+    } finally {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      setLoading(false);
+    }
   };
 
   return (
     <div className="w-full  bg-stone-900 p-5 text-black shadow-black">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
+          {plotSettings && (
+            <div className="flex  w-full  mb-10 gap-10">
+              <FormField
+                control={form.control}
+                name="xColumn"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel className="text-white">X Axis Column</FormLabel>
+                    <Select
+                      {...field}
+                      onValueChange={field.onChange}
+                      value={field.value}
+                    >
+                      <SelectTrigger className="">
+                        <SelectValue placeholder="Select Your X Column" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {dataColumns.map((column) => (
+                          <SelectItem key={column} value={column}>
+                            {column}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="yColumn"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel className="text-white">Y Axis Column</FormLabel>
+                    <Select
+                      {...field}
+                      onValueChange={field.onChange}
+                      value={field.value}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select Your Y Column" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {dataColumns.map((column) => (
+                          <SelectItem
+                            key={column}
+                            value={column}
+                            onSelect={() => field.onChange(column)}
+                          >
+                            {column}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormItem>
+                )}
+              />
+            </div>
+          )}
           <div className="text-black w-full grid grid-cols-2 md:grid-cols-4 items-baseline gap-4">
             {plotSettings &&
               plotSettings.map((plotSetting, index) =>
@@ -147,11 +237,20 @@ const DetailedPlotForm = ({ plotType }: { plotType: string }) => {
                 )
               )}
           </div>
+
           <div className="w-full flex justify-end mt-2">
-            <Button type="submit" variant="emerald" className="">
+            <Button
+              type="submit"
+              variant="emerald"
+              className={cn(
+                loading &&
+                  "animate-pulse bg-rose-500 transition-colors duration-1000 ease-in-out"
+              )}
+            >
               Submit
             </Button>
           </div>
+
           <div className="text-rose-600">
             {allErrors.map((error) => (
               <p key={error}> *{error} Please </p>

@@ -42,23 +42,26 @@ export type Database = {
         }
         Relationships: []
       }
-      Data_Api: {
+      DataSets: {
         Row: {
           created_at: string
           data_api: string | null
           data_name: string | null
+          dataColumnNames: string[] | null
           id: number
         }
         Insert: {
           created_at?: string
           data_api?: string | null
           data_name?: string | null
+          dataColumnNames?: string[] | null
           id?: number
         }
         Update: {
           created_at?: string
           data_api?: string | null
           data_name?: string | null
+          dataColumnNames?: string[] | null
           id?: number
         }
         Relationships: []

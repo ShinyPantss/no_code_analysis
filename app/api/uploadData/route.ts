@@ -13,15 +13,13 @@ export async function POST(req: Request, res: NextApiResponse) {
       return NextResponse.json({ success: false });
     }
 
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
     const { data, error } = await supabase.storage
       .from("fileBucket")
       .upload(`${file.name}`, file);
+    
 
     return NextResponse.json("selam");
   } catch (error) {
-    console.log("basaramadik");
     return NextResponse.json("sa");
   }
 }

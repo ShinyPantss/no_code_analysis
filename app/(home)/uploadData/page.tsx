@@ -1,6 +1,5 @@
 import React from "react";
 import UploadDataButton from "@/components/uploadData-btn";
-import { MyDropzone } from "@/components/uploadData-deneme";
 import { handleClick } from "@/actions/uploadData-func";
 
 const UploadData = () => {
@@ -18,3 +17,4 @@ const UploadData = () => {
 };
 
 export default UploadData;
+
