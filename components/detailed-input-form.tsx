@@ -123,7 +123,7 @@ const DetailedPlotForm = ({
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           {plotSettings && (
-            <div className="flex  w-full  mb-10 gap-10">
+            <div className="grid md:grid-cols-2 grid-cols-1 w-full gap-10 mb-10">
               <FormField
                 control={form.control}
                 name="xColumn"

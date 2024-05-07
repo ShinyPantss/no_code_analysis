@@ -24,6 +24,7 @@ const formSchema = z.object({
 
 function SampleForm() {
   const { dataSetId } = useParams();
+  const [columnNames, setColumnNames] = useState([]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -31,8 +32,6 @@ function SampleForm() {
       plotType: "barPlot",
     },
   });
-
-  const [columnNames, setColumnNames] = useState([]);
 
   const fetchColumnNames = async (datasetId: string) => {
     try {
@@ -57,7 +56,7 @@ function SampleForm() {
   return (
     <div className="bg-stone-900 flex relative z-50 bg-transparent rounded-3xl w-full">
       <div className="w-full border border-slate-200 bg-stone-900 p-5 text-black flex flex-col shadow-sm shadow-black h-full">
-        <div className="w-full">
+        <div className="">
           <Form {...form}>
             <form className="space-y-8 p-5 text-black">
               <FormField

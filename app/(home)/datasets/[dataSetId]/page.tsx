@@ -13,7 +13,7 @@ const DataInterface = (props: Props) => {
   );
   console.log(columnNames);
   return (
-    <div className=" w-full bg-stone-900 grid grid-cols-2  gap-4 py-10">
+    <div className=" w-full bg-stone-900 grid  grid-cols-1 md:grid-cols-2  gap-4 py-10">
       <SampleForm />
       <PlotImage />
     </div>
