@@ -2,7 +2,7 @@
 import React, { MouseEventHandler, useCallback, useState } from "react";
 import { Button } from "./ui/button";
 import { useDropzone } from "react-dropzone";
-import { supabase } from "@/lib/initSupabase";
+import { supabase } from "@/utils/supabase/server";
 const UploadDataButton = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 

@@ -5,10 +5,7 @@ import { Quicksand } from "next/font/google";
 import Navbar from "@/components/nav-bar";
 import StarsCanvas from "@/components/main/StarBackground";
 
-
-
 const inter = Inter({ subsets: ["latin"] });
-
 
 export const metadata: Metadata = {
   title: "Detai",
@@ -29,10 +26,8 @@ export default function RootLayout({
       <body
         className={`${quickSand.className} bg-[#1C1917] overflow-y-scroll overflow-x-hidden`}
       >
-        <StarsCanvas />
         {children}
       </body>
-
     </html>
   );
 }

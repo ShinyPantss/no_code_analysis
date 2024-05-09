@@ -27,7 +27,7 @@
     "@react-three/fiber": "^8.16.1",
     "@reduxjs/toolkit": "^2.2.3",
     "@supabase/ssr": "^0.1.0",
-    "@supabase/supabase-js": "^2.41.1",
+    "@supabase/supabase-js": "^2.43.1",
     "@types/formidable": "^3.4.5",
     "@types/multer": "^1.4.11",
     "@types/node": "^20",

@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/initSupabase";
+import { supabase } from "@/utils/supabase/server";
 
 export const handleClick = async (selectedFile: File) => {
   try {

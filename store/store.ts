@@ -1,9 +1,6 @@
-"use client";
 import { configureStore } from "@reduxjs/toolkit";
 import { plotContext } from "./imgUrl/imgSlice";
 import columnNamesContext from "./columnNamesSlice";
-
-
 
 export const store = configureStore({
   reducer: {
