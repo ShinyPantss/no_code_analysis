@@ -25,38 +25,8 @@ const UploadDataButton = () => {
         body: data,
       });
     }
-    // if (selectedFile) {
-    //   const { data, error } = await supabase.storage
-    //     .from("fileBucket")
-    //     .upload(`/${selectedFile.name}`, selectedFile);
-
-    //   if (error) {
-    //     console.error("Error uploading file:", error.message);
-    //   } else {
-    //     console.log("File uploaded successfully:", data);
-    //     setSelectedFile(null); // Clear selected file after upload
-    //   }
-    // }
   };
 
-  // const handleClick: MouseEventHandler<HTMLButtonElement> = async (
-  //   e: React.SyntheticEvent
-  // ) => {
-  //   e.preventDefault();
-  //   if (selectedFile) {
-  //     const formData = new FormData();
-
-  //     try {
-  //       const response = await fetch("/api/uploadData", {
-  //         method: "POST",
-  //         body: formData,
-  //       });
-  //       // Handle response from the server
-  //     } catch (error) {
-  //       console.error("Error uploading file:", error);
-  //     }
-  //   }
-  // };
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
@@ -66,10 +36,7 @@ const UploadDataButton = () => {
     >
       <div className="flex  border-dashed bg-transparent border-4 shadow-lg shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md hover:text-white rounded-2xl hover:border-stone-200 transition-all duration-150 text-3xl text-slate-100 p-10 z-10 ">
         <div {...getRootProps()} className="dropzone">
-          <input
-            {...getInputProps()}
-            onChange={(e) => setSelectedFile(e.target.files?.[0] || null)}
-          />
+          <input {...getInputProps()} />
           {selectedFile ? (
             <p className="text-white-500">
               Selected file:{" "}
@@ -89,6 +56,7 @@ const UploadDataButton = () => {
         </div>
       </div>
 
+
       <div className="flex space-x-4">
         {selectedFile && (
           <div className=" gap-4 grid  grid-cols-1 md:grid-cols-2 ">
@@ -106,8 +74,13 @@ const UploadDataButton = () => {
           </div>
         )}
       </div>
+
     </form>
   );
 };
 
+
+
 export default UploadDataButton;
+
+

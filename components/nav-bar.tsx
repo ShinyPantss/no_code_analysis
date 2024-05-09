@@ -27,7 +27,7 @@ const Navbar = () => {
   //     window.removeEventListener("scroll", handleScroll);
   //   };
   // }, []);
-
+  
   return (
     <div>
       <div className="w-full h-[65px] sticky top-0 shadow-lg shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md z-50 px-10">
@@ -45,8 +45,10 @@ const Navbar = () => {
               
             </span>
           </Link>
+
           <div className="w-[500px] h-full flex flex-row items-center justify-between md:mr-20">
             <div className="flex items-center justify-between w-full h-auto border border-[#e6e3efb4] bg-[#0300145e] mr-[15px] px-[20px] py-[10px] rounded-full text-gray-300">
+
               <Link
                 className={`${
                   isActive
@@ -61,11 +63,12 @@ const Navbar = () => {
               <Link href="/uploadData" className="cursor pointer">
                 Upload Data
               </Link>
-              <a href="#Plots" className="cursor-pointer">
+
+              <Link href="/plots" className="cursor-pointer">
                 Plots
-              </a>
+              </Link>
               <Link href="/contact" className="cursor-pointer">
-                Contact
+                Contact Us
               </Link>
             </div>
           </div>

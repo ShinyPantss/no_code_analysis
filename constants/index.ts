@@ -79,9 +79,9 @@ export const Skill_data = [
       width: 40,
       height: 40,
     },
-  
+
   ];
-  
+
   export const Socials = [
     {
       name: "Discord",
@@ -96,9 +96,7 @@ export const Skill_data = [
       src: "/discord.svg",
     },
   ];
-  
-  
-  
+
   export const Frontend_skill = [
     {
       skill_name: "Html 5",
@@ -161,7 +159,7 @@ export const Skill_data = [
       height: 80,
     },
   ];
-  
+
   export const Backend_skill = [
     {
       skill_name: "Node js",
@@ -212,7 +210,7 @@ export const Skill_data = [
       height: 80,
     },
   ];
-  
+
   export const Full_stack = [
     {
       skill_name: "React Native",
@@ -232,18 +230,16 @@ export const Skill_data = [
       width: 70,
       height: 70,
     },
-  
+
     {
       skill_name: "Figma",
       Image: "/figma.png",
       width: 50,
       height: 50,
     },
-  
+
   ];
-  
-  
-  
+
   export const Other_skill = [
     {
       skill_name: "Go",
@@ -252,8 +248,5 @@ export const Skill_data = [
       height: 60,
     },
   ];
-  
-  
-  
-  
+
   

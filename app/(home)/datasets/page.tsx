@@ -3,26 +3,21 @@ import Link from "next/link";
 import Card from "@/components/card";
 import { supabase } from "@/lib/initSupabase";
 import { NextResponse } from "next/server";
-import { DataArrayTexture } from "three";
-
-
-
 const fetchDatasets = async () => {
-  const { data, error } = await supabase.from("Data_Api").select("*");
+  const { data, error } = await supabase.from("DataSets").select("*");
   if (error) {
     throw error;
   }
+
   return data;
 };
 
 const DataSets = async () => {
   const data = await fetchDatasets();
-
+  
   return (
     <div className="flex items-center justify-center px-4">
       <div className="grid lg:grid-cols-4  md:grid-cols-3 grid-cols-2   justify-center items-center   gap-10 mt-12">
-        {/** TODO: Will be applied generic card  */}
-
         {data &&
           Object.values(data).map((key) => {
             if (!key.data_name || !key.data_api) {

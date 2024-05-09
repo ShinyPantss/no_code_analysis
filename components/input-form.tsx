@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Form, FormField, FormItem, FormLabel } from "@/components/ui/form";
-
 import DetailedPlotForm from "./detailed-input-form";
 import {
   Select,
@@ -14,32 +13,53 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+import { useParams } from "next/navigation";
 
 const formSchema = z.object({
   plotType: z.string(),
 });
 
 function SampleForm() {
+  const { dataSetId } = useParams();
+  const [columnNames, setColumnNames] = useState([]);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       plotType: "barPlot",
     },
   });
-  const [plotType, setPlotType] = useState("barPlot");
-  const dispatch = useDispatch();
+
+  const fetchColumnNames = async (datasetId: string) => {
+    try {
+      const response = await fetch(`/api/dataset/${datasetId}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch column names");
+      }
+      const data = await response.json();
+      setColumnNames(data.columns);
+    } catch (error) {
+      console.error("Error fetching column names:", error);
+    }
+  };
+  console.log(columnNames);
   useEffect(() => {
-    setPlotType(form.watch("plotType"));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [form.watch("plotType")]);
+    fetchColumnNames(dataSetId as string); // Replace 'your-dataset-id' with actual ID
+  }, [dataSetId]);
+
+  // Use the watch function to subscribe to changes in plotType
+  const plotType = form.watch("plotType");
 
   return (
-    <div className=" bg-stone-900 flex relative z-50 bg-transparent rounded-3xl w-full">
-      <div className="w-full border  border-slate-200 bg-stone-900 p-5  text-black flex flex-col shadow-sm shadow-black h-full  border-3 border-cyan-800 rounded-lg">
-        <div className="w-full ">
+
+    <div className="bg-stone-900 flex relative z-50 bg-transparent rounded-3xl w-full">
+      <div className="w-full border border-slate-200 bg-stone-900 p-5 text-black flex flex-col shadow-sm shadow-black h-full">
+        <div className="">
           <Form {...form}>
-            <form className="space-y-8 p-5 text-black border-blue-300">
+            <form className="space-y-8 p-5 text-black">
               <FormField
                 control={form.control}
                 name="plotType"
@@ -63,7 +83,7 @@ function SampleForm() {
               />
             </form>
           </Form>
-          <DetailedPlotForm plotType={plotType} />
+          <DetailedPlotForm plotType={plotType} dataColumns={columnNames} />
         </div>
       </div>
     </div>

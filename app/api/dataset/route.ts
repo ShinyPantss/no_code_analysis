@@ -1,6 +1,6 @@
 import { supabase } from "@/lib/initSupabase";
 import { NextResponse } from "next/server";
-import type { Database, Tables } from "@/database.type";
+import type { Database, Tables } from "@/database.types";
 export async function GET(req: Request, res: Response) {}
 
 export async function POST(req: Request, res: Response) {
@@ -37,8 +37,7 @@ export async function POST(req: Request, res: Response) {
 
   const turnIntoObject = clearedData.map(([key, value]) => {
     return {
-      [key]:value
-    
+      [key]: value,
     };
   });
 
