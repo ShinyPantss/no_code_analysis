@@ -1,7 +1,9 @@
-import React from "react";
+import React from 'react'
 
-function ContantPage() {
-  return <div>ContantPage</div>;
+const page = () => {
+  return (
+    <div></div>
+  )
 }
 
-export default ContantPage;
+export default page
