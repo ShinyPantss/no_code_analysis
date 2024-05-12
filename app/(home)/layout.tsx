@@ -21,9 +21,8 @@ const HomeLayout = ({
   return (
     <div className={`${quickSand.className} h-full w-full bg-stone-900`}>
       <StoreProvider>
-        {children}
         <Navbar />
-
+        {children}
         <Footer />
       </StoreProvider>
     </div>
