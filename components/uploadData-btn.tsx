@@ -2,14 +2,13 @@
 import React, { MouseEventHandler, useCallback, useState } from "react";
 import { Button } from "./ui/button";
 import { useDropzone } from "react-dropzone";
-import { supabase } from "@/utils/supabase/server";
+import { createClient } from "@/utils/supabase/server";
 import { GrDocumentUpload } from "react-icons/gr";
 import { SiReactos } from "react-icons/si";
-import { supabase } from "@/lib/initSupabase";
 
 const UploadDataButton = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-
+  const supabase = createClient();
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setSelectedFile(acceptedFiles[0]);
   }, []);
@@ -58,7 +57,6 @@ const UploadDataButton = () => {
         </div>
       </div>
 
-
       <div className="flex space-x-4">
         {selectedFile && (
           <div className=" gap-4 grid  grid-cols-1 md:grid-cols-2 ">
@@ -76,13 +74,8 @@ const UploadDataButton = () => {
           </div>
         )}
       </div>
-
     </form>
   );
 };
 
-
-
 export default UploadDataButton;
-
-
