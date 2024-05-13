@@ -23,11 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${quickSand.className} bg-[#1C1917] overflow-y-scroll overflow-x-hidden`}
-      >
-        {children}
-      </body>
+      <body className={`${quickSand.className} bg-[#1C1917]`}>{children}</body>
     </html>
   );
 }

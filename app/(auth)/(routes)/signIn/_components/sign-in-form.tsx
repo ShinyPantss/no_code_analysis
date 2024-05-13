@@ -16,8 +16,10 @@ import { Input } from "@/components/ui/input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFormState } from "react-dom";
+import { useEffect, useState } from "react";
 
 export default function SignInForm() {
+  const [error, setError] = useState<string | null>(null);
   const signInSchema = z.object({
     email: z.string().email({ message: "Invalid email" }),
     password: z
@@ -34,11 +36,13 @@ export default function SignInForm() {
     },
   });
 
-  const { errors } = form.formState;
-
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
-    await signIn(data);
+    const result = await signIn(data);
+    if (result && result.message) {
+      setError(result.message);
+    }
   };
+
   return (
     <Form {...form}>
       <div className="">
@@ -77,6 +81,7 @@ export default function SignInForm() {
           <Button type="submit" className="bg-black  ">
             Sign In
           </Button>
+          {error && <p className="text-red-500">{error}</p>}
         </form>
       </div>
     </Form>

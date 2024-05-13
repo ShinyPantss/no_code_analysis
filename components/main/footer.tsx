@@ -4,7 +4,7 @@ import {
   RxGithubLogo,
   RxInstagramLogo,
   RxTwitterLogo,
-  RxLinkedinLogo
+  RxLinkedinLogo,
 } from "react-icons/rx";
 import { BsLinkedin } from "react-icons/bs";
 import { BsTwitterX } from "react-icons/bs";
@@ -13,15 +13,11 @@ import { Button } from "../ui/button";
 
 const Footer = () => {
   return (
-    <div className="w-full h-full bg-transparent text-gray-200 shadow-lg p-[100px]">
-      
-
+    <div className="w-full h-full bg-transparent text-gray-200 shadow-lg p-[100px] ">
       <div className="w-full flex flex-col items-center justify-center m-auto">
         <div className="w-full h-full flex flex-row items-center justify-around flex-wrap mb-5">
           <div className="min-w-[200px] h-auto flex flex-col items-center justify-start">
-            <div className="font-bold text-[20px] text-cyan-500">
-              Community
-            </div>
+            <div className="font-bold text-[20px] text-cyan-500">Community</div>
             <p className="flex flex-row items-center my-[15px] cursor-pointer">
               <FaYoutube />
               <span className="text-[15px] ml-[6px] ">Youtube</span>
@@ -77,4 +73,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
