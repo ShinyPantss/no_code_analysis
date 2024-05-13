@@ -119,7 +119,7 @@ const DetailedPlotForm = ({
   };
 
   return (
-    <div className="w-full  bg-stone-900 p-5 text-black shadow-black">
+    <div className="w-full  bg-stone-800 p-5 text-black shadow-black blur-10 rounded-md border-4 border-white-500">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           {plotSettings && (
@@ -190,7 +190,7 @@ const DetailedPlotForm = ({
                       control={form.control}
                       name={key}
                       render={({ field }) => (
-                        <FormItem className=" p-4 border">
+                        <FormItem className=" p-3 border-4">
                           <FormLabel className="text-white">{key}</FormLabel>
                           <FormControl>
                             <Checkbox
@@ -227,7 +227,7 @@ const DetailedPlotForm = ({
                               placeholder={`Please Enter ${key}`}
                               {...field}
                               value={field.value?.toString() || ""}
-                              className="outline-8"
+                              className="outline-8 font-medium"
                             />
                           </FormControl>
                         </FormItem>
@@ -237,6 +237,7 @@ const DetailedPlotForm = ({
                 )
               )}
           </div>
+
 
           <div className="w-full flex justify-end mt-2">
             <Button
@@ -253,7 +254,7 @@ const DetailedPlotForm = ({
 
           <div className="text-rose-600">
             {allErrors.map((error) => (
-              <p key={error}> *{error} Please </p>
+              <p key={error}> *{error} Please fill in the empty fields </p>
             ))}
           </div>
         </form>
