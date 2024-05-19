@@ -1,10 +1,11 @@
-import { supabase } from "@/lib/initSupabase";
+import { createClient } from "@/utils/supabase/server";
 import { NextResponse } from "next/server";
 import type { Database, Tables } from "@/database.types";
 export async function GET(req: Request, res: Response) {}
 
 export async function POST(req: Request, res: Response) {
   const { plotType } = await req.json();
+  const supabase = createClient();
 
   function getTableType<TTableName extends keyof Database["public"]["Tables"]>(
     tableName: TTableName

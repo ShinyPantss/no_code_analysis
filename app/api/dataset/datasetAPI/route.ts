@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { supabase } from "@/lib/initSupabase";
+import { supabase } from "@/utils/supabase/server";
 import { NextApiRequest } from "next";
 export async function POST(req: Request, res: Response) {
   const data = await req.json();
