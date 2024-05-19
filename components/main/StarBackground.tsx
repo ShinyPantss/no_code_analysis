@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useRef, Suspense } from "react";
@@ -18,7 +19,9 @@ const StarBackground = (props: any) => {
     ref.current.rotation.y -= delta / 15;
   });
 
-  return (
+
+const StarBackground = () => {
+
     <group rotation={[0, 0, Math.PI / 4]}>
       <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
         <PointMaterial
@@ -43,4 +46,4 @@ const StarsCanvas = ({ className }: { className: string }) => (
   </div>
 );
 
-export default StarsCanvas;
+export default StarBackground

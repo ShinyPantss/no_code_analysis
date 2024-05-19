@@ -177,7 +177,7 @@ const DetailedPlotForm = ({
                     </Select>
                   </FormItem>
                 )}
-              />
+              /> 
             </div>
           )}
           <div className="text-black w-full grid grid-cols-2 md:grid-cols-4 items-baseline gap-4">
