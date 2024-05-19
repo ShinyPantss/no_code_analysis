@@ -34,7 +34,7 @@ const Navbar = () => {
         <div className="w-full h-full flex flex-row items-center justify-between m-auto px-[10px]">
           <Link href="/" className="h-auto w-auto flex flex-row items-center">
             <Image
-              src="/DETAI-Logo.png"
+              src="/DETAI-Logo (2).png"
               alt="logo"
               width={220}
               height={140}
